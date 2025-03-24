@@ -1,0 +1,21 @@
+﻿<Page
+    x:Class="EventHandler.LoginPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:EventHandler"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Width="300" Spacing="12">
+
+        <TextBlock Text="Email:"/>
+        <TextBox x:Name="EmailTextBox" PlaceholderText="Add meg az email címed"/>
+
+        <TextBlock Text="Jelszó:"/>
+        <PasswordBox x:Name="PasswordBox" PlaceholderText="Add meg a jelszavad"/>
+
+        <TextBlock x:Name="ErrorTextBlock" Foreground="Red" TextWrapping="WrapWholeWords"/>
+
+        <Button Content="Belépés" Click="LoginButton_Click"/>
+
+    </StackPanel>
+</Page>

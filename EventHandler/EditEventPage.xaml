@@ -1,0 +1,35 @@
+﻿<Page
+    x:Class="EventHandler.EditEventPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:EventHandler"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Padding="20" Spacing="20">
+
+            <TextBlock Text="Edit event" FontSize="28" FontWeight="Bold"/>
+
+            <TextBlock Text="Name" FontWeight="SemiBold"/>
+            <TextBox Text="{Binding Name, Mode=TwoWay}" PlaceholderText="Event name"/>
+
+            <TextBlock Text="PLACE" FontSize="16" FontWeight="Bold"/>
+            <TextBlock Text="City"/>
+            <TextBox Text="{Binding Location, Mode=TwoWay}" PlaceholderText="City"/>
+
+            <TextBlock Text="Country"/>
+            <TextBox Text="{Binding Country, Mode=TwoWay}" PlaceholderText="Country"/>
+
+            <TextBlock Text="Capacity"/>
+            <TextBox Text="{Binding Capacity, Mode=TwoWay}" PlaceholderText="Capacity" InputScope="Number"/>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="10">
+                <Button Content="Cancel" Click="Cancel_Click"/>
+                <Button Content="Save" Click="Save_Click" Background="#0288D1" Foreground="White"/>
+            </StackPanel>
+
+        </StackPanel>
+    </ScrollViewer>
+</Page>
