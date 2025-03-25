@@ -26,6 +26,12 @@ namespace EventHandler.ViewModel
             }
         }
 
+        public void AddEvent(Event newEvent)
+        {
+            _eventService.AddEvent(newEvent); // hozzáadjuk a mock tárolóhoz
+            Events.Add(newEvent); // és a listához is
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
         private void OnPropertyChanged([CallerMemberName] string name = null)
             => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));

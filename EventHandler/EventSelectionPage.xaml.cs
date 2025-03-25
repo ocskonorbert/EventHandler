@@ -1,5 +1,6 @@
 ﻿using EventHandler.Model;
 using EventHandler.ViewModel;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
@@ -28,6 +29,10 @@ namespace EventHandler
         {
             await ViewModel.LoadEventsAsync();
             base.OnNavigatedTo(e);
+        }
+        private async void AddEventButton_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(AddEventPage), ViewModel);
         }
     }
 }
