@@ -38,17 +38,54 @@ namespace EventHandler
 
         private void Add_Click(object sender, RoutedEventArgs e)
         {
+            ErrorTextBlock.Text = ""; // töröljük a korábbi hibaüzenetet
+
+            string name = NameBox.Text?.Trim();
+            string location = LocationBox.Text?.Trim();
+            string country = CountryBox.Text?.Trim();
+            string capacityText = CapacityBox.Text?.Trim();
+
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                ErrorTextBlock.Text = "A név megadása kötelező.";
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(location))
+            {
+                ErrorTextBlock.Text = "A helyszín megadása kötelező.";
+                return;
+            }
+
+            if (location.Length > 100)
+            {
+                ErrorTextBlock.Text = "A helyszín maximum 100 karakter lehet.";
+                return;
+            }
+
+            int? capacity = null;
+            if (!string.IsNullOrWhiteSpace(capacityText))
+            {
+                if (!int.TryParse(capacityText, out int cap) || cap <= 0)
+                {
+                    ErrorTextBlock.Text = "A kapacitásnak pozitív számnak kell lennie.";
+                    return;
+                }
+                capacity = cap;
+            }
+
             var newEvent = new Event
             {
-                Name = NameBox.Text,
-                Location = LocationBox.Text,
-                Country = CountryBox.Text,
-                Capacity = int.TryParse(CapacityBox.Text, out int cap) ? cap : (int?)null
+                Name = name,
+                Location = location,
+                Country = country,
+                Capacity = capacity
             };
 
             _viewModel?.AddEvent(newEvent);
             Frame.GoBack();
         }
+
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
             Frame.GoBack();

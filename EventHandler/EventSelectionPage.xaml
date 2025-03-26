@@ -6,19 +6,36 @@
     x:Name="RootPage">
 
     <Grid Padding="20">
-        <ListView ItemsSource="{Binding Events}"
-                  IsItemClickEnabled="True" 
+        <!-- 2 sor: felső sorban a gomb, alatta a lista -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Add Event button a jobb felső sarokban -->
+        <Grid>
+            <Button Content="+ Add Event"
+                    Click="AddEventButton_Click"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Top"
+                    Margin="0,0,0,10"/>
+        </Grid>
+
+        <!-- Lista a második sorban -->
+        <ListView Grid.Row="1"
+                  ItemsSource="{Binding Events}"
+                  IsItemClickEnabled="True"
                   ItemClick="ListView_ItemClick"
                   SelectionMode="None">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Border 
-                Background="White" 
-                Margin="0,0,0,12" 
-                Padding="12" 
-                CornerRadius="8" 
-                BorderBrush="#DDD" 
-                BorderThickness="1">
+                        Background="White"
+                        Margin="0,0,0,12"
+                        Padding="12"
+                        CornerRadius="8"
+                        BorderBrush="#DDD"
+                        BorderThickness="1">
                         <StackPanel>
                             <TextBlock Text="{Binding Name}" FontSize="18" FontWeight="Bold" Margin="0,0,0,4"/>
                             <TextBlock Text="{Binding Location}" Margin="0,0,0,2"/>
@@ -29,10 +46,6 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Button Content="+ Add Event" 
-                Click="AddEventButton_Click" 
-                HorizontalAlignment="Center" 
-                Margin="0,20,0,0"/>
     </Grid>
-    
+
 </Page>
