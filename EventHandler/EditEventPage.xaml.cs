@@ -28,6 +28,45 @@ namespace EventHandler
         private void Save_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
             // Itt történhet mentés, pl. visszaküldeni a ViewModel-nek vagy Service-nek
+            ErrorTextBlock.Text = "";
+            string name = NameBox.Text?.Trim();
+            string location = LocationBox.Text?.Trim();
+            string country = CountryBox.Text?.Trim();
+            string capacityText = CapacityBox.Text?.Trim();
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                ErrorTextBlock.Text = "A név megadása kötelező.";
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(location))
+            {
+                ErrorTextBlock.Text = "A helyszín megadása kötelező.";
+                return;
+            }
+
+            if (location.Length > 100)
+            {
+                ErrorTextBlock.Text = "A helyszín maximum 100 karakter lehet.";
+                return;
+            }
+
+            int? capacity = null;
+            if (!string.IsNullOrWhiteSpace(capacityText))
+            {
+                if (!int.TryParse(capacityText, out int cap) || cap <= 0)
+                {
+                    ErrorTextBlock.Text = "A kapacitásnak pozitív számnak kell lennie.";
+                    return;
+                }
+                capacity = cap;
+            }
+
+            _editableEvent.Name = name;
+            _editableEvent.Location = location;
+            _editableEvent.Country = country;
+            _editableEvent.Capacity = capacity;
+
             Frame.GoBack();
         }
 
