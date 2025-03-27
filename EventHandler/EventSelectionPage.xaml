@@ -41,6 +41,14 @@
                             <TextBlock Text="{Binding Location}" Margin="0,0,0,2"/>
                             <TextBlock Text="{Binding Country}" Margin="0,0,0,2"/>
                             <TextBlock Text="{Binding FormattedCapacity}" Margin="0,0,0,2"/>
+
+                            <!-- 🔴 Törlés gomb -->
+                            <Button Content="Törlés"
+                            HorizontalAlignment="Left"
+                            Background="Red"
+                            Foreground="White"
+                            Click="DeleteButton_Click"
+                            DataContext="{Binding}"/>
                         </StackPanel>
                     </Border>
                 </DataTemplate>

@@ -36,15 +36,17 @@ namespace EventHandler
             _viewModel = e.Parameter as EventSelectionViewModel;
         }
 
+        /*Add new event*/
         private void Add_Click(object sender, RoutedEventArgs e)
         {
-            ErrorTextBlock.Text = ""; // töröljük a korábbi hibaüzenetet
+            ErrorTextBlock.Text = ""; // Delete previous error message
 
             string name = NameBox.Text?.Trim();
             string location = LocationBox.Text?.Trim();
             string country = CountryBox.Text?.Trim();
             string capacityText = CapacityBox.Text?.Trim();
 
+            /*Data field validation*/
             if (string.IsNullOrWhiteSpace(name))
             {
                 ErrorTextBlock.Text = "A név megadása kötelező.";
@@ -74,6 +76,7 @@ namespace EventHandler
                 capacity = cap;
             }
 
+            /*Fields are valid, create new event*/
             var newEvent = new Event
             {
                 Name = name,

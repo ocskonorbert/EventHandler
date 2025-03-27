@@ -28,7 +28,8 @@ namespace EventHandler
         private void Save_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
             // Itt történhet mentés, pl. visszaküldeni a ViewModel-nek vagy Service-nek
-            ErrorTextBlock.Text = "";
+            ErrorTextBlock.Text = ""; // Delete previous error message
+
             string name = NameBox.Text?.Trim();
             string location = LocationBox.Text?.Trim();
             string country = CountryBox.Text?.Trim();
@@ -62,6 +63,7 @@ namespace EventHandler
                 capacity = cap;
             }
 
+            /*Fields are valid, save the modified event*/
             _editableEvent.Name = name;
             _editableEvent.Location = location;
             _editableEvent.Country = country;
