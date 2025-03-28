@@ -51,7 +51,7 @@ namespace EventHandler
             {
                 if (rootFrame.Content == null)
                 {
-                    // Beállíthatod ide, hogy csak ha nincs bejelentkezve, akkor LoginPage
+                    //Navigate to the login page
                     rootFrame.Navigate(typeof(LoginPage), e.Arguments);
                 }
                 Window.Current.Activate();

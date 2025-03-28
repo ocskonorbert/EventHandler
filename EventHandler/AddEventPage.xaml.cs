@@ -1,39 +1,52 @@
 ﻿using EventHandler.Model;
+using EventHandler.ViewModel;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.Foundation;
+using Windows.Foundation.Collections;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Controls.Primitives;
+using Windows.UI.Xaml.Data;
+using Windows.UI.Xaml.Input;
+using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+
+// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace EventHandler
 {
-    public sealed partial class EditEventPage : Page
+    /// <summary>
+    /// An empty page that can be used on its own or navigated to within a Frame.
+    /// </summary>
+    public sealed partial class AddEventPage : Page
     {
-        private Event _editableEvent;
+        private EventSelectionViewModel _viewModel;
 
-        public EditEventPage()
+        public AddEventPage()
         {
             this.InitializeComponent();
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            _editableEvent = e.Parameter as Event;
-
-            if (_editableEvent != null)
-            {
-                this.DataContext = _editableEvent;
-            }
-
-            base.OnNavigatedTo(e);
+            _viewModel = e.Parameter as EventSelectionViewModel;
         }
 
-        private void Save_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        /*Add new event*/
+        private void Add_Click(object sender, RoutedEventArgs e)
         {
-            // Itt történhet mentés, pl. visszaküldeni a ViewModel-nek vagy Service-nek
             ErrorTextBlock.Text = ""; // Delete previous error message
 
             string name = NameBox.Text?.Trim();
             string location = LocationBox.Text?.Trim();
             string country = CountryBox.Text?.Trim();
             string capacityText = CapacityBox.Text?.Trim();
+
+            /*Data field validation*/
             if (string.IsNullOrWhiteSpace(name))
             {
                 ErrorTextBlock.Text = "A név megadása kötelező.";
@@ -63,18 +76,23 @@ namespace EventHandler
                 capacity = cap;
             }
 
-            /*Fields are valid, save the modified event*/
-            _editableEvent.Name = name;
-            _editableEvent.Location = location;
-            _editableEvent.Country = country;
-            _editableEvent.Capacity = capacity;
+            /*Fields are valid, create new event*/
+            var newEvent = new Event
+            {
+                Name = name,
+                Location = location,
+                Country = country,
+                Capacity = capacity
+            };
 
+            _viewModel?.AddEvent(newEvent);
             Frame.GoBack();
         }
 
-        private void Cancel_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private void Cancel_Click(object sender, RoutedEventArgs e)
         {
             Frame.GoBack();
         }
     }
+
 }

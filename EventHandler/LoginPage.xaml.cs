@@ -32,11 +32,10 @@ namespace EventHandler
                 return;
             }
 
-            // Ide jöhetne a valódi hitelesítés
-            // Mockolt belépés:
+            // Test login data
             if (email == "teszt@example.com" && password == "Teszt123")
             {
-                Frame.Navigate(typeof(EventSelectionPage)); // Sikeres belépés után listázó oldalra lépés
+                Frame.Navigate(typeof(EventSelectionPage)); // Navigate to event listing 
             }
             else
             {
@@ -44,6 +43,7 @@ namespace EventHandler
             }
         }
 
+        //Login name & password format validation
         private bool IsValidEmail(string email)
         {
             var emailRegex = new Regex(@"^[^@\s]+@[^@\s]+\.[^@\s]+$");

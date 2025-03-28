@@ -13,17 +13,22 @@
             <TextBlock Text="Edit event" FontSize="28" FontWeight="Bold"/>
 
             <TextBlock Text="Name" FontWeight="SemiBold"/>
-            <TextBox Text="{Binding Name, Mode=TwoWay}" PlaceholderText="Event name"/>
+            <TextBox x:Name="NameBox" Text="{Binding Name, Mode=TwoWay}" PlaceholderText="Event name"/>
+
 
             <TextBlock Text="PLACE" FontSize="16" FontWeight="Bold"/>
             <TextBlock Text="City"/>
-            <TextBox Text="{Binding Location, Mode=TwoWay}" PlaceholderText="City"/>
+            <TextBox x:Name="LocationBox" Text="{Binding Location, Mode=TwoWay}" PlaceholderText="City"/>
 
             <TextBlock Text="Country"/>
-            <TextBox Text="{Binding Country, Mode=TwoWay}" PlaceholderText="Country"/>
+            <TextBox x:Name="CountryBox" Text="{Binding Country, Mode=TwoWay}" PlaceholderText="Country"/>
 
             <TextBlock Text="Capacity"/>
-            <TextBox Text="{Binding Capacity, Mode=TwoWay}" PlaceholderText="Capacity" InputScope="Number"/>
+            <TextBox x:Name="CapacityBox" Text="{Binding Capacity, Mode=TwoWay}" PlaceholderText="Capacity" InputScope="Number"/>
+            <TextBlock x:Name="ErrorTextBlock"
+                Foreground="Red"
+                TextWrapping="WrapWholeWords"
+                Margin="0,0,0,10"/>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="10">
                 <Button Content="Cancel" Click="Cancel_Click"/>
